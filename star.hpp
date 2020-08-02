@@ -17,7 +17,7 @@ public:
 	{
 		x = ( rand() % MAX_X ) ;
 		y = ( rand() % MAX_Y ) ;
-	};
+    }
 	star( unsigned int _x, unsigned int _y )
 	{
 		if( _x > MAX_X || _y > MAX_Y ) {
@@ -26,7 +26,7 @@ public:
 		}
 		x = _x;
 		y = _y;
-	};
+    }
 	star( const star<MAX_X, MAX_Y>& s )
 	{
 		x = s.x;
@@ -40,11 +40,11 @@ public:
 	unsigned int get_x() const
 	{
 		return x;
-	};
+    }
 	unsigned int get_y() const
 	{
 		return y;
-	};
+    }
 	float operator-( const star<MAX_X, MAX_Y>& s ) const
 	{
 		return sqrt( ( x - s.x ) * ( x - s.x ) + ( y - s.y ) * ( y - s.y ) );
@@ -134,7 +134,7 @@ std::ostream &operator <<( std::ostream& o, starfield<S, X, Y>& s )
 template<unsigned S, unsigned X, unsigned Y>
 void connect_closest( starfield<S, X, Y>& s )
 {
-	unsigned n = S;
+    const unsigned n = S;
 	float dists[n][n];
 	for( int i = 0; i < n; i++ ) {
 		for( int j = 0; j < n; j++ ) {
