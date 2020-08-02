@@ -69,8 +69,8 @@ public:
 	starfield()
 	{
 		s = new star_t[STARS];
-		for( int i = 0; i < STARS; i++ ) {
-			for( int j = 0; j < STARS; j++ ) {
+        for(unsigned  int i = 0; i < STARS; i++ ) {
+            for(unsigned  int j = 0; j < STARS; j++ ) {
 				constellations[i][j] = false;
 			}
 		}
@@ -78,7 +78,7 @@ public:
 	starfield( starfield& c )
 	{
 		s = new star_t[STARS];
-		for( int i = 0; i < STARS; i++ ) {
+        for(unsigned  int i = 0; i < STARS; i++ ) {
 			s[i] = c.s[i];
 			for( int j = 0; j < STARS; j++ ) {
 				constellations[i][j] = c.constellations[i][j];
@@ -93,7 +93,7 @@ public:
 	{
 		return s[i];
 	}
-	const bool get_constellation( unsigned i, unsigned j )
+    bool get_constellation( unsigned i, unsigned j )
 	{
 		if( i > STARS || j > STARS ) {
 			four_oh_four a;
@@ -115,7 +115,7 @@ template<unsigned S, unsigned X, unsigned Y>
 std::ostream &operator <<( std::ostream& o, starfield<S, X, Y>& s )
 {
 	o << "<svg width=\"" << X << "\" height=\"" << Y << "\" ><rect x=\"0\" y=\"0\" height=\"" << Y << "\" width=\"" << X << "\" fill=black />";
-	int i, j;
+    unsigned int i, j;
 	for( i = 0; i < S; i++ ) {
 		o << s.get_star_i( i );
 		for( j = i; j < S; j++ ) {
@@ -136,12 +136,12 @@ void connect_closest( starfield<S, X, Y>& s )
 {
     const unsigned n = S;
 	float dists[n][n];
-	for( int i = 0; i < n; i++ ) {
-		for( int j = 0; j < n; j++ ) {
+    for( unsigned int i = 0; i < n; i++ ) {
+        for(unsigned  int j = 0; j < n; j++ ) {
 			dists[i][j] = s.get_star_i( i ) - s.get_star_i( j );
 		}
 	}
-	int i, j, k;
+    unsigned int i, j, k;
 	float m;
 	for( i = 0; i < n; i++ ) {
 		k = 0;
